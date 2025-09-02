@@ -1,5 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';  // ✅ FIXED
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { AlertTriangle, RefreshCw, Home, Bug } from 'lucide-react';
@@ -29,12 +29,10 @@ export class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({ error, errorInfo });
     
-    // Log error to console in development
     if (process.env.NODE_ENV === 'development') {
       console.error('Error caught by boundary:', error, errorInfo);
     }
     
-    // Show toast notification
     showToast.error('An unexpected error occurred. Please try again.');
   }
 
@@ -57,7 +55,6 @@ export class ErrorBoundary extends Component<Props, State> {
       url: window.location.href
     };
     
-    // In a real app, you would send this to your error reporting service
     console.log('Error report:', errorReport);
     showToast.success('Error report generated. Thank you for helping us improve!');
   };
@@ -142,7 +139,6 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-// Higher-order component for easier usage
 export function withErrorBoundary<P extends object>(
   Component: React.ComponentType<P>,
   fallback?: ReactNode
