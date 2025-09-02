@@ -1,6 +1,6 @@
 import { useAuth, UserType } from '../contexts/AuthContext';
 import { Navigate, useLocation } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion } from "framer-motion";
 import { Loader2 } from 'lucide-react';
 
 interface ProtectedRouteProps {
